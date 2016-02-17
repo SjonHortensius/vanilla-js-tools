@@ -35,6 +35,7 @@ tableSorter.sortMoney = function(a, b)
 
 	return parseFloat(aa) - parseFloat(bb);
 }
-window.addEventListener('load', tableSorter.initialize);
+
+window.addEventListener('load', function(){ tableSorter.initialize(); });
 </script>
 ```
