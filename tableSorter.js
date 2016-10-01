@@ -56,7 +56,7 @@ var tableSorter = {};
 		if ('function' != typeof this[sortCb])
 			throw new Error('Please create a sort method for data-type: '+ dataType);
 
-		col.dataset.sortOrder = col.dataset.sortOrder == 'asc' ? 'desc' : 'asc';
+		col.dataset.sortOrder = col.dataset.sortOrder == 'desc' ? 'asc' : 'desc';
 
 		t.classList.add('sorted');
 
