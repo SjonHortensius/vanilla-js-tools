@@ -25,13 +25,13 @@
 NodeList.prototype.forEach =
  HTMLCollection.prototype.forEach = function (cb){
 	Array.prototype.forEach.call(this, cb);
-}
+};
 
 var tableSorter = {};
 (function()
 {
 	"use strict";
-	var SORTING_COLUMN;
+	this.SORTING_COLUMN = undefined;
 
 	this.initialize = function()
 	{
@@ -43,20 +43,20 @@ var tableSorter = {};
 				cell.addEventListener('click', this.reOrder.bind(this));
 			}.bind(this));
 		}.bind(this));
-	}
+	};
 
 	this.reOrder = function(e)
 	{
 		var col = e.target, t = col.parentNode.parentNode.parentNode;
-		if ('none' == col.dataset.type)
+		if ('none' === col.dataset.type)
 			return;
 
 		var dataType = col.dataset.type || 'default';
 		var sortCb = 'sort' + dataType.charAt(0).toUpperCase() + dataType.substr(1);
-		if ('function' != typeof this[sortCb])
+		if ('function' !== typeof this[sortCb])
 			throw new Error('Please create a sort method for data-type: '+ dataType);
 
-		col.dataset.sortOrder = col.dataset.sortOrder == 'desc' ? 'asc' : 'desc';
+		col.dataset.sortOrder = col.dataset.sortOrder === 'desc' ? 'asc' : 'desc';
 
 		t.classList.add('sorted');
 
@@ -69,13 +69,13 @@ var tableSorter = {};
 
 			rows.sort(this[sortCb].bind(this));
 
-			if ('desc' == col.dataset.sortOrder)
+			if ('desc' === col.dataset.sortOrder)
 				rows.reverse();
 
 			for (var i=0; i<rows.length; i++)
 				b.appendChild(rows[i]);
 		}.bind(this));
-	}
+	};
 
 	this.sortNumber = function(a, b)
 	{
@@ -83,7 +83,7 @@ var tableSorter = {};
 		var bb = parseFloat(b.cells[this.SORTING_COLUMN].textContent) || 0;
 
 		return aa - bb;
-	}
+	};
 
 	this.sortDefault = function(a, b)
 	{
@@ -96,5 +96,5 @@ var tableSorter = {};
 			return -1;
 		else
 			return 1;
-	}
+	};
 }).apply(tableSorter);
