@@ -41,6 +41,7 @@ var tableSorter = {};
 
 			table.tHead.rows[0].childNodes.forEach(function(cell){
 				cell.addEventListener('click', this.reOrder.bind(this));
+				cell.classList.add('sortable');
 			}.bind(this));
 		}.bind(this));
 	};
